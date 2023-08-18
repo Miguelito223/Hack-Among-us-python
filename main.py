@@ -9,7 +9,7 @@ def lol():
         sleep(float(text2.get(1.0, END)))
         pyautogui.click(902,836)
         sleep(float(text2.get(1.0, END)))
-        pyautogui.write(text.get(1.0, END))
+        pyautogui.write(text.get(1.0, END), text4.get(1.0, END) )
         sleep(float(text2.get(1.0, END)))
         pyautogui.press("enter")
         sleep(float(text2.get(1.0, END)))
@@ -34,6 +34,14 @@ label2.pack()
 
 text3 = Text(width=5, height=0)
 text3.pack()
+
+label3 = Label(text="Write Interval")
+label3.pack()
+
+text4 = Text(width=5, height=0)
+text4.pack()
+
+
 
 label3 = Label(text="Hack Here")
 label3.pack()
