@@ -4,7 +4,7 @@ import pyautogui
 from tkinter import *
 
 def lol():
-    for i in range(float(text3.get(1.0, END))):
+    for i in range(int(text3.get(1.0, END))):
         pyautogui.click(1706,66)
         sleep(float(text2.get(1.0, END)))
         pyautogui.click(902,836)
