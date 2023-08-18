@@ -15,7 +15,7 @@ def lol():
         sleep(float(text2.get(1.0, END)))
 
 ventana = Tk()
-ventana.geometry("300x300")
+ventana.geometry("400x400")
 ventana.title("Among Us hack")
 ventana.iconbitmap("x.ico")
 
