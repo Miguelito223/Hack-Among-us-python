@@ -4,7 +4,7 @@ import pyautogui
 from tkinter import *
 
 def lol():
-    for i in range(20):
+    for i in range(float(text3.get(1.0, END))):
         pyautogui.click(1706,66)
         sleep(float(text2.get(1.0, END)))
         pyautogui.click(902,836)
@@ -29,8 +29,14 @@ label.pack()
 text2 = Text(width=5, height=0)
 text2.pack()
 
-label2 = Label(text="Hack Here")
+label2 = Label(text="Repetitions")
 label2.pack()
+
+text3 = Text(width=5, height=0)
+text3.pack()
+
+label3 = Label(text="Hack Here")
+label3.pack()
 
 button = Button(text="Press", command=lol)
 button.pack()
