@@ -3,8 +3,6 @@ from time import sleep
 import pyautogui
 from tkinter import *
 
-sleep(1)
-
 def lol():
     for i in range(20):
         pyautogui.click(1706,66)
@@ -22,7 +20,7 @@ ventana.title("Among Us hack")
 ventana.iconbitmap("descarga.ico")
 
 
-text = Text(width=20, height=0)
+text = Text(width=20, height=10)
 text.pack()
 
 label = Label(text="Hack Here")
