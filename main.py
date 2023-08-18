@@ -6,13 +6,13 @@ from tkinter import *
 def lol():
     for i in range(20):
         pyautogui.click(1706,66)
-        sleep(float(text2.get(1.0, END)))
+        sleep(float(text2.get()))
         pyautogui.click(902,836)
-        sleep(float(text2.get(1.0, END)))
-        pyautogui.write(text.get(1.0, END))
-        sleep(float(text2.get(1.0, END)))
+        sleep(float(text2.get()))
+        pyautogui.write(text.get())
+        sleep(float(text2.get()))
         pyautogui.press("enter")
-        sleep(float(text2.get(1.0, END)))
+        sleep(float(text2.get()))
 
 ventana = Tk()
 ventana.geometry("300x300")
