@@ -43,7 +43,7 @@ label3.pack()
 text4 = Text(width=5, height=0)
 text4.pack()
 
-label4 = Label(text="Click Interval")
+label4 = Label(text="Click Duration")
 label4.pack()
 
 text5 = Text(width=5, height=0)
