@@ -4,9 +4,9 @@ import pyautogui
 from tkinter import *
 
 def lol():
-    pyautogui.click(1706, 66, interval=float(text5.get(1.0, END)))
+    pyautogui.click(1706, 66, duration = float(text5.get(1.0, END)))
     sleep(float(text2.get(1.0, END)))
-    pyautogui.click(902, 836, interval=float(text5.get(1.0, END)))
+    pyautogui.click(902, 836, duration = float(text5.get(1.0, END)))
 
     sleep(float(text2.get(1.0, END)))
 
