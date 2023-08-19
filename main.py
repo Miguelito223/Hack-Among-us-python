@@ -49,8 +49,6 @@ label4.pack()
 text5 = Text(width=5, height=0)
 text5.pack()
 
-
-
 label3 = Label(text="Hack Here")
 label3.pack()
 
@@ -59,8 +57,6 @@ button.pack()
 
 ventana.mainloop()
 
-
-
 while True:
-    time.sleep(3)
+    sleep(3)
     print(pyautogui.position())
