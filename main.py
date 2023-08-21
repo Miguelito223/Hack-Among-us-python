@@ -6,6 +6,7 @@ from tkinter.filedialog import askopenfile
 import json
 from pathlib import Path
 import os
+from os import path
 
 
 data = {
@@ -16,9 +17,10 @@ data = {
     "Click_Duration":0
 }
 
-data_direction = Path(os.listdir(os.getenv('APPDATA')))
+data_direction = Path(path.expandvars(r"%APPDATA%\AmongUsHack\Data.json"))
+data_direction2 = Path(path.expandvars(r"%APPDATA%\AmongUsHack"))
 
-def lol():
+def hack():
     pyautogui.click(1706, 66, duration = float(text5.get(1.0, END)))
     sleep(float(text2.get(1.0, END)))
     pyautogui.click(902, 836, duration = float(text5.get(1.0, END)))
@@ -32,15 +34,20 @@ def lol():
         sleep(float(text2.get(1.0, END)))
 
 def save_data():
+    if not data_direction.exists():
+        os.mkdir(data_direction2)
+    
     with open(data_direction, "w") as savefile:
         json.dump(data, savefile)
 
 def load_data():
-    if data_direction.is_file():
-        with open(data_direction, "r") as openfile:
-            data = json.load(openfile)
-    else:
+    if not data_direction.exists():
         save_data()
+    
+    with open(data_direction, "r") as openfile:
+        data = json.load(openfile)
+
+
 load_data()
 
 Text_value = data["Text"]
@@ -90,7 +97,7 @@ text5.pack()
 button = Button(text="Save", command=save_data)
 button.pack()
 
-button = Button(text="Start", command=lol)
+button = Button(text="Start", command=hack)
 button.pack()
 
 ventana.mainloop()
