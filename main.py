@@ -20,16 +20,16 @@ data_direction2 = Path(path.expandvars(r"%APPDATA%\AmongUsHack"))
 
 def hack():
     pyautogui.click(1706, 66, duration = float(Click.get(1.0, END)))
-    sleep(float(time.get(1.0, END)))
+    sleep(float(Time.get(1.0, END)))
     pyautogui.click(902, 836, duration = float(Click.get(1.0, END)))
 
-    sleep(float(time.get(1.0, END)))
+    sleep(float(Time.get(1.0, END)))
 
     for i in range(int(Repe.get(1.0, END))):
-        pyautogui.write(text.get(1.0, END), Write.get(1.0, END) )
-        sleep(float(time.get(1.0, END)))
+        pyautogui.write(Text.get(1.0, END), Write.get(1.0, END) )
+        sleep(float(Time.get(1.0, END)))
         pyautogui.press("enter")
-        sleep(float(time.get(1.0, END)))
+        sleep(float(Time.get(1.0, END)))
 
 def save_data():
     global data
@@ -56,56 +56,61 @@ def load_data():
 
     with open(data_direction, "r") as openfile:
         data = json.load(openfile)
+        Text.delete(END)
+        Time.delete(END)
+        Repe.delete(END)
+        Click.delete(END)
+        Write.delete(END)
         text.insert(END, data["Text"])
         time.insert(END, data["Time_Sleep"])
         Repe.insert(END, data["Repetitions"])
         Click.insert(END, data["Click_Duration"])
         Write.insert(END, data["Write_Interval"])
-        
+
     openfile.close()
     print("file are loaded!!")
 
-ventana = Tk()
-ventana.geometry("400x400")
-ventana.title("Among Us hack")
-ventana.iconbitmap("x.ico")
+root = Tk()
+root.geometry("400x400")
+root.title("Among Us hack")
+root.iconbitmap("x.ico")
 
-text = Text(width=20, height=10)
-text.pack()
+Text = Text(width=20, height=10)
+Text.pack()
 
-label = Label(text="Time Sleep")
-label.pack()
-
-time = Entry()
+time = Label(text="Time Sleep")
 time.pack()
 
-label2 = Label(text="Repetitions")
-label2.pack()
+Time = Entry()
+Time.pack()
+
+repe = Label(text="Repetitions")
+repe.pack()
 
 Repe = Entry()
 Repe.pack()
 
-label3 = Label(text="Write Interval")
-label3.pack()
+write = Label(text="Write Interval")
+write.pack()
 
 Write = Entry()
 Write.pack()
 
-label4 = Label(text="Click Duration")
-label4.pack()
+click = Label(text="Click Duration")
+click.pack()
 
 Click = Entry()
 Click.pack()
 
 load_data()
 
-button = Button(text="Save", command=save_data)
-button.pack()
+Save = Button(text="Save", command=save_data)
+Save.pack()
 
-button2 = Button(text="Load", command=load_data)
-button2.pack()
+Load = Button(text="Load", command=load_data)
+Load.pack()
 
-button3 = Button(text="Start", command=hack)
-button3.pack()
+Start = Button(text="Start", command=hack)
+Start.pack()
 
-ventana.mainloop()
+root.mainloop()
