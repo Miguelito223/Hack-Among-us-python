@@ -32,23 +32,32 @@ def hack():
         sleep(float(text2.get(1.0, END)))
 
 def save_data():
+    global data
+
     if not data_direction2.exists():
         os.mkdir(data_direction2)
 
-    savefile = open(data_direction, "w")
-    savefile.write(json.dumps(data)) 
+    with open(data_direction, "w") as savefile:
+        data["Text"] = text.get(1.0,END)
+        data["Time_Sleep"] = text2.get(1.0,END)
+        data["Repetitions"] = text3.get(1.0,END)
+        data["Write_Interval"] = text4.get(1.0,END)
+        data["Click_Duration"] = text5.get(1.0,END)
+        json.dump(data, savefile, indent=4)
     savefile.close()
+    print("file are saved!!")
 
 def load_data():
+    global data
+
     if not data_direction.exists():
         save_data()
         return
 
-    openfile = open(data_direction, "r")
-    read = openfile.read()
-    global data
-    data = json.loads(read)
+    with open(data_direction, "r") as openfile:
+        data = json.load(openfile)
     openfile.close()
+    print("file are loaded!!")
 
 load_data()
 
@@ -99,13 +108,3 @@ button3 = Button(text="Start", command=hack)
 button3.pack()
 
 ventana.mainloop()
-
-while True:
-    data["Text"] = text.get(1.0,END)
-    data["Time_Sleep"] = text2.get(1.0,END)
-    data["Repetitions"] = text3.get(1.0,END)
-    data["Write_Interval"] = text4.get(1.0,END)
-    data["Click_Duration"] = text5.get(1.0,END)
-    print(data)
-    save_data()
-    sleep(1)
