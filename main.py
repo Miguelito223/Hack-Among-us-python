@@ -19,17 +19,17 @@ data_direction = Path(path.expandvars(r"%APPDATA%\AmongUsHack\Data.json"))
 data_direction2 = Path(path.expandvars(r"%APPDATA%\AmongUsHack"))
 
 def hack():
-    pyautogui.click(1706, 66, duration = float(Click.get(1.0, END)))
-    sleep(float(Time.get(1.0, END)))
-    pyautogui.click(902, 836, duration = float(Click.get(1.0, END)))
+    pyautogui.click(1706, 66, duration = float(Click.get()))
+    sleep(float(Time.get()))
+    pyautogui.click(902, 836, duration = float(Click.get()))
 
-    sleep(float(Time.get(1.0, END)))
+    sleep(float(Time.get()))
 
-    for i in range(int(Repe.get(1.0, END))):
-        pyautogui.write(Text.get(1.0, END), Write.get(1.0, END) )
-        sleep(float(Time.get(1.0, END)))
+    for i in range(int(Repe.get())):
+        pyautogui.write(Text.get(1.0, END), Write.get() )
+        sleep(float(Time.get()))
         pyautogui.press("enter")
-        sleep(float(Time.get(1.0, END)))
+        sleep(float(Time.get()))
 
 def save_data():
     global data
@@ -38,8 +38,8 @@ def save_data():
         os.mkdir(data_direction2)
 
     with open(data_direction, "w") as savefile:
-        data["Text"] = text.get(1.0,END)
-        data["Time_Sleep"] = time.get()
+        data["Text"] = Text.get(1.0,END)
+        data["Time_Sleep"] = Time.get()
         data["Repetitions"] = Repe.get()
         data["Write_Interval"] = Write.get()
         data["Click_Duration"] = Click.get()
@@ -52,21 +52,19 @@ def load_data():
 
     if not data_direction.exists():
         save_data()
-        return
 
     with open(data_direction, "r") as openfile:
         data = json.load(openfile)
-        Text.delete(END)
-        Time.delete(END)
-        Repe.delete(END)
-        Click.delete(END)
-        Write.delete(END)
-        text.insert(END, data["Text"])
-        time.insert(END, data["Time_Sleep"])
+        Text.delete('1.0', END)
+        Time.delete('1.0', END)
+        Repe.delete('1.0', END)
+        Click.delete('1.0', END)
+        Write.delete('1.0', END)
+        Text.insert(END, data["Text"])
+        Time.insert(END, data["Time_Sleep"])
         Repe.insert(END, data["Repetitions"])
         Click.insert(END, data["Click_Duration"])
         Write.insert(END, data["Write_Interval"])
-
     openfile.close()
     print("file are loaded!!")
 
@@ -102,8 +100,6 @@ click.pack()
 Click = Entry()
 Click.pack()
 
-load_data()
-
 Save = Button(text="Save", command=save_data)
 Save.pack()
 
@@ -112,5 +108,7 @@ Load.pack()
 
 Start = Button(text="Start", command=hack)
 Start.pack()
+
+load_data()
 
 root.mainloop()
