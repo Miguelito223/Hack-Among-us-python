@@ -2,12 +2,10 @@ import tkinter
 from time import sleep
 import pyautogui
 from tkinter import *
-from tkinter.filedialog import askopenfile
 import json
 from pathlib import Path
 import os
 from os import path
-
 
 data = {
     "Text":"Put Text Here", 
@@ -34,74 +32,80 @@ def hack():
         sleep(float(text2.get(1.0, END)))
 
 def save_data():
-    if not data_direction.exists():
+    if not data_direction2.exists():
         os.mkdir(data_direction2)
-    
-    with open(data_direction, "w") as savefile:
-        json.dump(data, savefile)
+
+    savefile = open(data_direction, "w")
+    savefile.write(json.dumps(data)) 
+    savefile.close()
 
 def load_data():
     if not data_direction.exists():
         save_data()
-    
-    with open(data_direction, "r") as openfile:
-        data = json.load(openfile)
+        return
 
+    openfile = open(data_direction, "r")
+    read = openfile.read()
+    global data
+    data = json.loads(read)
+    openfile.close()
 
 load_data()
-
-Text_value = data["Text"]
-Time_Sleep_value = data["Time_Sleep"]
-Repetitions_value = data["Repetitions"]
-Write_Interval_value = data["Write_Interval"]
-Click_Duration_value = data["Click_Duration"]
 
 ventana = Tk()
 ventana.geometry("400x400")
 ventana.title("Among Us hack")
 ventana.iconbitmap("x.ico")
 
-
 text = Text(width=20, height=10)
-text.insert(END, Text_value)
+text.insert(END, data["Text"])
 text.pack()
 
 label = Label(text="Time Sleep")
 label.pack()
 
 text2 = Text(width=5, height=0)
-text2.insert(END, Time_Sleep_value)
+text2.insert(END, data["Time_Sleep"])
 text2.pack()
 
 label2 = Label(text="Repetitions")
 label2.pack()
 
 text3 = Text(width=5, height=0)
-text3.insert(END, Repetitions_value)
+text3.insert(END, data["Repetitions"])
 text3.pack()
 
 label3 = Label(text="Write Interval")
 label3.pack()
 
 text4 = Text(width=5, height=0)
-text4.insert(END, Write_Interval_value)
+text4.insert(END, data["Write_Interval"])
 text4.pack()
 
 label4 = Label(text="Click Duration")
 label4.pack()
 
 text5 = Text(width=5, height=0)
-text5.insert(END, Click_Duration_value)
+text5.insert(END, data["Click_Duration"])
 text5.pack()
 
 button = Button(text="Save", command=save_data)
 button.pack()
 
-button = Button(text="Start", command=hack)
-button.pack()
+button2 = Button(text="Load", command=load_data)
+button2.pack()
+
+button3 = Button(text="Start", command=hack)
+button3.pack()
 
 ventana.mainloop()
 
 while True:
-    sleep(3)
-    print(pyautogui.position())
+    data["Text"] = text.get(1.0,END)
+    data["Time_Sleep"] = text2.get(1.0,END)
+    data["Repetitions"] = text3.get(1.0,END)
+    data["Write_Interval"] = text4.get(1.0,END)
+    data["Click_Duration"] = text5.get(1.0,END)
+    print(data)
+    save_data()
+    sleep(1)
