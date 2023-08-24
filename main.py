@@ -2,6 +2,7 @@ import tkinter
 from time import sleep
 import pyautogui
 from tkinter import *
+from tkinter.ttk import *
 import json
 from pathlib import Path
 import os
