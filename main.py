@@ -66,10 +66,15 @@ def load_data():
     openfile.close()
     print("file are loaded!!")
 
+def on_quit():
+    save_data()
+
 root = Tk()
 root.geometry("400x400")
 root.title("Among Us hack")
 root.iconbitmap("x.ico")
+root.protocol("WM_DELETE_WINDOW", on_quit)
+
 
 Text = Text(width=20, height=10)
 Text.pack()
