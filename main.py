@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 from os import path
 
+global data
 data = {
     "Text":"Put Text Here", 
     "Time_Sleep":0, 
@@ -33,8 +34,6 @@ def hack():
         sleep(float(Time.get()))
 
 def save_data():
-    global data
-
     if not data_direction2.exists():
         os.mkdir(data_direction2)
 
@@ -49,8 +48,6 @@ def save_data():
     print("file are saved!!")
 
 def load_data():
-    global data
-
     if not data_direction.exists():
         save_data()
 
