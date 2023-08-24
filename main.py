@@ -68,6 +68,7 @@ def load_data():
 
 def on_quit():
     save_data()
+    root.destroy()
 
 root = Tk()
 root.geometry("400x400")
