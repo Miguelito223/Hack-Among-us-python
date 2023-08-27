@@ -34,6 +34,8 @@ def hack():
         sleep(float(Time.get()))
 
 def save_data():
+    global data
+
     if not data_direction2.exists():
         os.mkdir(data_direction2)
 
@@ -48,6 +50,8 @@ def save_data():
     print("file are saved!!")
 
 def load_data():
+    global data
+    
     if not data_direction.exists():
         save_data()
 
