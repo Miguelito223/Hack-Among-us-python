@@ -12,7 +12,7 @@ data_direction = Path(path.expandvars(r"%APPDATA%\AmongUsHack\Data.json"))
 data_direction2 = Path(path.expandvars(r"%APPDATA%\AmongUsHack"))
 
 def hack():
-    if Enable_Clicks_Value:
+    if Enable_Clicks_Value == True:
         pyautogui.click(1706, 66, duration = float(Click.get()))
         sleep(float(Time.get()))
         pyautogui.click(902, 836, duration = float(Click.get()))
